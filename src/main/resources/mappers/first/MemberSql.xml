@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.first.dao.MemberDao" >
+    <insert id="insertMemberByDto" parameterType="com.example.demo.first.dto.MemberDto">
+        <![CDATA[
+        --sqlId=first.member.insertMemberByDto
+        insert into prac."member" 
+            (
+                id
+                , "password"
+                , "name"
+                , email
+                , nickname
+            )
+        values 
+            (
+                'tester'
+                , 'test1234'
+                , null
+                , null
+                , null
+            )
+        ]]>
+    </insert>
+    <select id="selectMemberByDto" parameterType="com.example.demo.first.dto.MemberDto" resultType="com.example.demo.first.dto.MemberDto">
+        <![CDATA[
+        --sqlId=com.example.demo.first.dao.MemberDao.selectMemberByDto
+        select 
+            *
+        from 
+            prac."member"
+        where 1=1 
+            and use_yn = true
+            and id = #{id}
+            and password = #{password}
+        ]]>
+    </select>
+    <select id="selectMemberById" parameterType="string" resultType="com.example.demo.first.dto.MemberDto">
+        <![CDATA[
+        --sqlId=com.example.demo.first.dao.MemberDao.selectMemberById
+        select
+            *
+        from prac."member"
+        where 1 = 1
+            and use_yn = true
+            and id = #{id}
+        ]]>
+    </select>
+    <update id="updateMemberByDto" parameterType="com.example.demo.first.dto.MemberDto">
+        <![CDATA[
+        --sqlId=com.example.demo.first.dao.MemberDao.selectMemberById
+        update
+            prac."member"
+        set
+            name = #{name}, 
+            password = #{password}, 
+            email = #{email}, 
+            nickname = #{nickname}, 
+            use_yn = #{useYn}, 
+            last_connect_datetime = to_timestamp(#{lastConnectDatetime}, 'yyyy-mm-dd hh24:mi:ss.ms')
+        where 1 = 1
+            and use_yn = true
+            and id = #{id}
+            and "password" = #{password}
+        ]]>
+    </update>
+</mapper>
